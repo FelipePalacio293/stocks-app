@@ -8,6 +8,9 @@ export const useStocksRecommendationsStore = defineStore('stocksRecommendations'
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
 
+  const showModal = ref<boolean>(false);
+  const selectedStock = ref<StockRecoomendation | null>(null);
+
   async function fetchStockRecommendations() {
     isLoading.value = true;
     error.value = null;
@@ -28,11 +31,25 @@ export const useStocksRecommendationsStore = defineStore('stocksRecommendations'
     }
   }
 
+  function closeModal() {
+    showModal.value = !showModal.value;
+  }
+
+  function handleStockClick(stock: StockRecoomendation) {
+    selectedStock.value = stock;
+    showModal.value = true;
+  }
+
   return {
     stocksRecommendations,
     isLoading,
     error,
 
-    fetchStockRecommendations
+    showModal,
+    selectedStock,
+
+    fetchStockRecommendations,
+    closeModal,
+    handleStockClick,
   }
 });
