@@ -1,4 +1,4 @@
-import type { StockResponse } from '@/types/stocks';
+import type { StockRecommendationResponse, StockResponse } from '@/types/stocks';
 import api from '../lib/axios';
 
 export default {
@@ -10,5 +10,14 @@ export default {
       console.error('Error fetching stocks:', error);
       return undefined;
     }
-  }
+  },
+  async getStockRecommendations(): Promise<StockRecommendationResponse | undefined> {
+    try {
+      const response = await api.get<StockRecommendationResponse>(`/api/v1/stocks/recommendations`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching stock recommendations:', error);
+      return undefined;
+    }
+  },
 }

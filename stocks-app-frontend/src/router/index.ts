@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/stocks',
       name: 'Stocks',
-      component: HomeView,
+      component: () => import('@/views/StockRecommendationsView.vue'),
     }
   ],
 })
