@@ -91,7 +91,8 @@ func (c *APIClient) FetchStocks(ctx context.Context) ([]models.Stock, error) {
 				continue
 			}
 
-			targetTo, err := strconv.ParseFloat(strings.TrimPrefix(data.TargetTo, "$"), 64)
+			cleanTargetTo := strings.ReplaceAll(strings.TrimPrefix(data.TargetTo, "$"), ",", "")
+			targetTo, err := strconv.ParseFloat(cleanTargetTo, 64)
 			if err != nil {
 				log.Printf("Warning: could not parse TargetTo value '%s' for ticker %s: %v", data.TargetTo, data.Ticker, err)
 				continue
