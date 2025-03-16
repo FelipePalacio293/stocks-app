@@ -12,6 +12,9 @@ export const useStocksStore = defineStore('stocks', () => {
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
 
+  const selectedStock = ref<Stock | null>(null);
+  const showStockDetails = ref<boolean>(false);
+
   async function fetchStocks(page: number = 1) {
     isLoading.value = true;
     error.value = null;
@@ -36,6 +39,15 @@ export const useStocksStore = defineStore('stocks', () => {
     }
   }
 
+  function selectStock(stock: Stock) {
+    selectedStock.value = stock;
+    showStockDetails.value = true;
+  }
+
+  function closeStockDetails() {
+    showStockDetails.value = false;
+  }
+
   const hasStocks = computed(() => stocks.value.length > 0);
 
   return {
@@ -47,6 +59,11 @@ export const useStocksStore = defineStore('stocks', () => {
     isLoading,
     error,
     
+    selectedStock,
+    showStockDetails,
+    selectStock,
+
+    closeStockDetails,
     fetchStocks,
     
     hasStocks

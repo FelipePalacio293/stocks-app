@@ -3,6 +3,9 @@
   import { EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
   import { formatDate } from '@/utils/index';
   import type { Stock } from '../types/stocks';
+  import { useStocksStore } from '@/stores/stocks';
+
+  const stocksStore = useStocksStore();
 
   defineProps<{
     stock: Stock
@@ -60,6 +63,7 @@
           <MenuItem v-slot="{ active }">
           <button 
             :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm text-gray-900']"
+            @click="stocksStore.selectStock(stock)"
           >
             View Details
           </button>

@@ -3,6 +3,7 @@
   import { onMounted } from 'vue';
   import Stock from '@/components/Stock.vue';
   import Spinner from '@/components/Spinner.vue';
+  import ModalStockDetails from '@/components/ModalStockDetails.vue';
 
   const stocksStore = useStocksStore();
 
@@ -63,5 +64,6 @@
         <p class="text-gray-500">No stocks found.</p>
       </div>
     </div>
+    <ModalStockDetails />
   </div>
 </template>
