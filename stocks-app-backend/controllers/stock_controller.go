@@ -78,7 +78,7 @@ func (c *StockController) GetRecommendationsByAction(ctx *gin.Context) {
 
 	recommendations := c.stockService.GetTopStocksByAction(stocks, action, topN)
 
-	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations retrieved successfully"))
+	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations by action retrieved successfully"))
 }
 
 func (c *StockController) GetRecommendationsByBrokerage(ctx *gin.Context) {
@@ -98,7 +98,7 @@ func (c *StockController) GetRecommendationsByBrokerage(ctx *gin.Context) {
 
 	recommendations := c.stockService.GetTopStocksByBrokerage(stocks, brokerage, topN)
 
-	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations retrieved successfully"))
+	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations by brokerage retrieved successfully"))
 }
 
 func (c *StockController) GetRecommendationsByRating(ctx *gin.Context) {
@@ -118,5 +118,5 @@ func (c *StockController) GetRecommendationsByRating(ctx *gin.Context) {
 
 	recommendations := c.stockService.GetTopStocksByRating(stocks, rating, topN)
 
-	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations retrieved successfully"))
+	ctx.JSON(http.StatusOK, utils.SuccessResponse(recommendations, "Stock recommendations by rating retrieved successfully"))
 }
