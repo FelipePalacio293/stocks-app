@@ -22,6 +22,14 @@ func ErrorResponse(message string) Response {
 	}
 }
 
+func SuccessResponse(data interface{}, message string) Response {
+	return Response{
+		Success: true,
+		Message: message,
+		Data:    data,
+	}
+}
+
 func PaginatedResponse(data interface{}, page, pageSize int, total int64, message string) Response {
 	totalPages := int(total) / pageSize
 	if int(total)%pageSize > 0 {

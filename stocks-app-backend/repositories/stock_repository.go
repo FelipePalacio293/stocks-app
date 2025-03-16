@@ -24,6 +24,15 @@ func (r *StockRepository) Create(stock *models.Stock) error {
 	return r.db.Create(stock).Error
 }
 
+func (r *StockRepository) ListAll() ([]models.Stock, error) {
+	var stocks []models.Stock
+	if err := r.db.Find(&stocks).Error; err != nil {
+		return nil, err
+	}
+
+	return stocks, nil
+}
+
 func (r *StockRepository) List(page, pageSize int) ([]models.Stock, int64, error) {
 	var stocks []models.Stock
 	var count int64
