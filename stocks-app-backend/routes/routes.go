@@ -48,7 +48,7 @@ func SetupRouter(db *gorm.DB, cfg *config.Config) *gin.Engine {
 	{
 		public := api.Group("/stocks")
 		{
-			public.GET("/", stockController.ListStocks)
+			public.GET("", stockController.ListStocks)
 			public.GET("/recommendations", stockController.GetStockRecommendations)
 			public.GET("/recommendations/action/:action", stockController.GetRecommendationsByAction)
 			public.GET("/recommendations/brokerage/:brokerage", stockController.GetRecommendationsByBrokerage)
