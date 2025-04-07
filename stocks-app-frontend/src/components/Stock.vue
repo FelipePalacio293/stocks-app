@@ -82,7 +82,8 @@
     <div class="flex justify-between gap-x-4 py-3">
       <dt class="text-gray-500">Rating</dt>
       <dd class="text-gray-700">
-        {{ stock.rating_from }} → {{ stock.rating_to }}
+        <p v-if="stock.rating_from == stock.rating_to">{{ stock.rating_from }}</p>
+        <p v-else>{{ stock.rating_from }} -> {{ stock.rating_to }}</p>
       </dd>
     </div>
 

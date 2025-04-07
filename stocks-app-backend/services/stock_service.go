@@ -32,8 +32,8 @@ func NewStockService(repo *repositories.StockRepository, cfg *config.Config) *St
 	}
 }
 
-func (s *StockService) ListStocks(page, pageSize int) ([]models.StockResponse, int64, error) {
-	stocks, count, err := s.repo.List(page, pageSize)
+func (s *StockService) ListStocks(page int, pageSize int, ticker string) ([]models.StockResponse, int64, error) {
+	stocks, count, err := s.repo.List(page, pageSize, ticker)
 
 	if err != nil {
 		return nil, 0, err

@@ -22,6 +22,7 @@ func NewStockController(stockService *services.StockService) *StockController {
 func (c *StockController) ListStocks(ctx *gin.Context) {
 	pageStr := ctx.DefaultQuery("page", "1")
 	pageSizeStr := ctx.DefaultQuery("page_size", "10")
+	ticker := ctx.DefaultQuery("ticker", "")
 
 	page, err := strconv.Atoi(pageStr)
 	if err != nil || page < 1 {
@@ -33,7 +34,7 @@ func (c *StockController) ListStocks(ctx *gin.Context) {
 		pageSize = 10
 	}
 
-	stocks, count, err := c.stockService.ListStocks(page, pageSize)
+	stocks, count, err := c.stockService.ListStocks(page, pageSize, ticker)
 
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, utils.ErrorResponse(err.Error()))

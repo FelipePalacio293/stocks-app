@@ -33,16 +33,22 @@ func (r *StockRepository) ListAll() ([]models.Stock, error) {
 	return stocks, nil
 }
 
-func (r *StockRepository) List(page, pageSize int) ([]models.Stock, int64, error) {
+func (r *StockRepository) List(page int, pageSize int, ticker string) ([]models.Stock, int64, error) {
 	var stocks []models.Stock
 	var count int64
 
-	if err := r.db.Model(&models.Stock{}).Count(&count).Error; err != nil {
+	query := r.db.Model(&models.Stock{})
+
+	if ticker != "" {
+		query = query.Where("ticker LIKE ?", "%"+ticker+"%")
+	}
+
+	if err := query.Count(&count).Error; err != nil {
 		return nil, 0, err
 	}
 
 	offset := (page - 1) * pageSize
-	if err := r.db.Offset(offset).Limit(pageSize).Find(&stocks).Error; err != nil {
+	if err := query.Offset(offset).Limit(pageSize).Find(&stocks).Error; err != nil {
 		return nil, 0, err
 	}
 
