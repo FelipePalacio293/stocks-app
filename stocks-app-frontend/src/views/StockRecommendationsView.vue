@@ -21,7 +21,7 @@
     <div class="flex justify-center">
       <h2 class="text-2xl font-bold text-gray-900 flex items-center mb-6">
         <TrophyIcon class="h-8 w-8 text-yellow-500 mr-2" />
-        Top Stock Recommendations
+        {{ $t('topStocksTitle') }}
       </h2>
     </div>
 

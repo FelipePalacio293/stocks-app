@@ -1,7 +1,11 @@
 {
-    "home": "Inicio",
-    "recommendations": "Recomendaciones de stocks",
-    "next": "Siguiente",
-    "previous": "Anterior",
-    "close": "Cerrar"
+    "homeTitle": "Inicio",
+    "topStocksTitle": "Recomendaciones de stocks",
+    "close": "Cerrar",
+    "pagination": {
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "page": "Pagina",
+        "of": "de"
+    }
 }
