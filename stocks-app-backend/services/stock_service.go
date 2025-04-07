@@ -25,6 +25,36 @@ type StockService struct {
 	cfg  *config.Config
 }
 
+const (
+	// Factores de la puntuación
+	TargetChangePercentMultiplier float64 = 2.0
+	TargetPriceLogMultiplier      float64 = 2.0
+
+	// Puntuaciones para las acciones
+	ActionUpgradedScore      float64 = 5.0
+	ActionTargetRaisedScore  float64 = 3.0
+	ActionReiteratedScore    float64 = 1.0
+	ActionTargetLoweredScore float64 = -2.0
+	ActionDowngradedScore    float64 = -4.0
+
+	// Puntuaciones por tiempo
+	RecentUpdateDaysThreshold           int     = 7
+	RecentUpdateScore                   float64 = 2.0
+	ModeratelyRecentUpdateDaysThreshold int     = 30
+	ModeratelyRecentUpdateScore         float64 = 1.0
+)
+
+var RatingScores = map[string]float64{
+	"Buy":            5.0,
+	"Outperform":     4.0,
+	"Overweight":     4.0,
+	"Equal Weight":   3.0,
+	"Sector Perform": 3.0,
+	"Hold":           2.0,
+	"Underperform":   1.0,
+	"Sell":           0.0,
+}
+
 func NewStockService(repo *repositories.StockRepository, cfg *config.Config) *StockService {
 	return &StockService{
 		repo: repo,
@@ -138,21 +168,10 @@ func scoreStock(stock models.Stock) StockRecommendation {
 	var targetChangePercent float64 = 0
 	if stock.TargetFrom > 0 {
 		targetChangePercent = (targetChange / stock.TargetFrom) * 100
-		score += targetChangePercent * 2
+		score += targetChangePercent * TargetChangePercentMultiplier
 	}
 
-	ratingScores := map[string]float64{
-		"Buy":            5.0,
-		"Outperform":     4.0,
-		"Overweight":     4.0,
-		"Equal Weight":   3.0,
-		"Sector Perform": 3.0,
-		"Hold":           2.0,
-		"Underperform":   1.0,
-		"Sell":           0.0,
-	}
-
-	if ratingScore, exists := ratingScores[stock.RatingTo]; exists {
+	if ratingScore, exists := RatingScores[stock.RatingTo]; exists {
 		score += ratingScore
 	}
 
@@ -170,7 +189,7 @@ func scoreStock(stock models.Stock) StockRecommendation {
 	}
 
 	if stock.TargetTo > 0 {
-		relativeTargetScore := math.Log(stock.TargetTo) * 2
+		relativeTargetScore := math.Log(stock.TargetTo) * TargetPriceLogMultiplier
 		score += relativeTargetScore
 	}
 
@@ -178,9 +197,9 @@ func scoreStock(stock models.Stock) StockRecommendation {
 	now := time.Now()
 	daysDifference := int(now.Sub(updateTime).Hours() / 24)
 
-	if daysDifference <= 7 {
+	if daysDifference <= RecentUpdateDaysThreshold {
 		score += 2
-	} else if daysDifference <= 30 {
+	} else if daysDifference <= ModeratelyRecentUpdateDaysThreshold {
 		score += 1
 	}
 

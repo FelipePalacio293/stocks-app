@@ -65,7 +65,7 @@ func (c *APIClient) FetchStocks(ctx context.Context) ([]models.Stock, error) {
 		}
 
 		req.Header.Add("Accept", "application/json")
-		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHRlbXB0cyI6MSwiZW1haWwiOiJwYWxhY2lvZmVsaXBlOTcyQGdtYWlsLmNvbSIsImV4cCI6MTc0MjAwNTk0OSwiaWQiOiIwIiwicGFzc3dvcmQiOiInIE9SICcxJz0nMSJ9.mUDU2Bl4nuGIxYTpEA_OP66AdhCOE_nRsLF50UhRE0Y")
+		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.apiKey))
 
 		resp, err := c.httpClient.Do(req)
 		if err != nil {
