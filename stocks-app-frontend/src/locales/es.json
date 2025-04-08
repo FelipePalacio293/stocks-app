@@ -3,7 +3,7 @@
     "topStocksTitle": "Recomendaciones de stocks",
     "analystTitle": "Análisis de acciones",
     "recommendations": {
-        "other": "Other recommendations"
+        "other": "Otras recomendaciones"
     },
     "modal": {
         "close": "Cerrar"
