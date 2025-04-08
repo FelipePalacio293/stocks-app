@@ -1,11 +1,33 @@
 {
     "homeTitle": "Home",
     "topStocksTitle": "Top stocks recommendations",
-    "close": "Close",
+    "analystTitle": "Stock Analysis Ratings",
+    "recommendations": {
+        "other": "Other recommendations"
+    },
+    "modal": {
+        "close": "Close"
+    },
     "pagination": {
         "next": "Next",
         "previous": "Previous",
         "page": "Page",
         "of": "of"
+    },
+    "ratings": {
+        "buy": "Buy",
+        "outperform": "Outperform",
+        "overweight": "Overweight",
+        "equalWeight": "Equal Weight",
+        "sectorPerform": "Sector Perform",
+        "hold": "Hold",
+        "underperform": "Underperform",
+        "sell": "Sell"
+    },
+    "stocks": {
+        "priceTarget": "Price Target",
+        "brokerage": "Brokerage",
+        "rating": "Rating",
+        "updated": "Updated"
     }
 }

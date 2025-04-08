@@ -15,7 +15,7 @@
 <template>
   <div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Stock Analyst Ratings</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $t('analystTitle') }}</h1>
 
       <div v-if="stocksStore.isLoading" class="mt-5">
         <Spinner />

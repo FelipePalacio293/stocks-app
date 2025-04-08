@@ -148,7 +148,7 @@
       </div>
 
       <div class="w-full max-w-3xl mt-8" v-if="stocksRecommendationsStore.stocksRecommendations.length > 3">
-        <h3 class="text-lg font-medium text-gray-900 mb-4">Other Recommendations</h3>
+        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ $t('recommendations.other') }}</h3>
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
           <ul class="divide-y divide-gray-200">
             <li v-for="(stock, index) in stocksRecommendationsStore.stocksRecommendations.slice(3)" :key="stock.ticker"

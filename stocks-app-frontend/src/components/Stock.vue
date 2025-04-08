@@ -75,22 +75,23 @@
 
   <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm">
     <div class="flex justify-between gap-x-4 py-3">
-      <dt class="text-gray-500">Brokerage</dt>
+      <dt class="text-gray-500">{{ $t('stocks.brokerage') }}</dt>
       <dd class="text-gray-700">{{ stock.brokerage }}</dd>
     </div>
 
     <div class="flex justify-between gap-x-4 py-3">
-      <dt class="text-gray-500">Rating</dt>
+      <dt class="text-gray-500">{{ $t('stocks.rating') }}</dt>
       <dd class="text-gray-700">
-        <p v-if="stock.rating_from == stock.rating_to">{{ stock.rating_from }}</p>
-        <p v-else>{{ stock.rating_from }} -> {{ stock.rating_to }}</p>
+        <div v-if="stock.rating_from === stock.rating_to">{{ stock.rating_from }}</div>
+        <div v-else>{{ stock.rating_from }} → {{ stock.rating_to }}</div>
       </dd>
     </div>
 
     <div class="flex justify-between gap-x-4 py-3">
-      <dt class="text-gray-500">Price Target</dt>
+      <dt class="text-gray-500">{{ $t('stocks.priceTarget') }}</dt>
       <dd class="flex items-center gap-x-2">
-        <div class="font-medium text-gray-900">${{ stock.target_from }} → ${{ stock.target_to }}</div>
+        <div v-if="stock.target_from === stock.target_to" class="font-medium text-gray-900">${{ stock.target_from }}</div>
+        <div v-else class="font-medium text-gray-900">${{ stock.target_from }} → ${{ stock.target_to }}</div>
         <div :class="[getActionColor(stock.action), 'rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset']">
           {{ stock.action }}
         </div>
@@ -98,7 +99,7 @@
     </div>
 
     <div class="flex justify-between gap-x-4 py-3">
-      <dt class="text-gray-500">Updated</dt>
+      <dt class="text-gray-500">{{ $t('stocks.updated') }}</dt>
       <dd class="text-gray-700">
         <time :datetime="stock.updated_at">{{ formatDate(stock.updated_at) }}</time>
       </dd>

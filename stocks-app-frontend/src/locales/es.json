@@ -1,11 +1,33 @@
 {
     "homeTitle": "Inicio",
     "topStocksTitle": "Recomendaciones de stocks",
-    "close": "Cerrar",
+    "analystTitle": "Análisis de acciones",
+    "recommendations": {
+        "other": "Other recommendations"
+    },
+    "modal": {
+        "close": "Cerrar"
+    },
     "pagination": {
         "next": "Siguiente",
         "previous": "Anterior",
         "page": "Pagina",
         "of": "de"
+    },    
+    "ratings": {
+        "buy": "Comprar",
+        "outperform": "Superar",
+        "overweight": "Sobrepeso",
+        "equalWeight": "Peso Igual",
+        "sectorPerform": "Rendimiento del Sector",
+        "hold": "Mantener",
+        "underperform": "Subrendimiento",
+        "sell": "Vender"
+    },
+    "stocks": {
+        "priceTarget": "Precio objetivo",
+        "brokerage": "Brokerage",
+        "rating": "Calificación",
+        "updated": "Actualizado"
     }
 }
