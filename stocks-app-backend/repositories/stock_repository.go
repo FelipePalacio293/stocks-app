@@ -40,7 +40,7 @@ func (r *StockRepository) List(page int, pageSize int, ticker string) ([]models.
 	query := r.db.Model(&models.Stock{})
 
 	if ticker != "" {
-		query = query.Where("ticker LIKE ?", "%"+ticker+"%")
+		query = query.Where("ticker LIKE CONCAT('%', ?, '%')", ticker) // to prevent sql inyection
 	}
 
 	if err := query.Count(&count).Error; err != nil {
