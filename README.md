@@ -41,3 +41,14 @@ DB_NAME=stocks
 API_BASE_URL=<your-api-url>
 API_KEY=<your-api-key>
 ALLOWED_ORIGINS=http://localhost:5173
+```
+
+### Frontend setup
+
+1. Navigate to `stocks-app-frontend` directory
+2. Execute `npm install` 
+3. Create `.env` file with required configuration:
+
+```env
+VITE_API_URL=http://localhost:8081 # or the backend url
+```
