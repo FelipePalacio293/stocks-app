@@ -15,12 +15,14 @@ export const useStocksStore = defineStore('stocks', () => {
   const selectedStock = ref<Stock | null>(null);
   const showStockDetails = ref<boolean>(false);
 
-  async function fetchStocks(page: number = 1) {
+  const searchTerm = ref<string>('');
+
+  async function fetchStocks(page: number = 1, ticker: string = searchTerm.value) {
     isLoading.value = true;
     error.value = null;
     
     try {
-      const response = await StocksService.getStocks(page);
+      const response = await StocksService.getStocks(page, ticker);
       
       if (response && response.success) {
         stocks.value = response.data;
@@ -37,6 +39,11 @@ export const useStocksStore = defineStore('stocks', () => {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  function setSearchTerm(term: string) {
+    searchTerm.value = term;
+    fetchStocks(1, term);
   }
 
   function selectStock(stock: Stock) {
@@ -58,10 +65,12 @@ export const useStocksStore = defineStore('stocks', () => {
     pageSize,
     isLoading,
     error,
+    searchTerm,
     
     selectedStock,
     showStockDetails,
     selectStock,
+    setSearchTerm,
 
     closeStockDetails,
     fetchStocks,

@@ -2,6 +2,7 @@
     "homeTitle": "Inicio",
     "topStocksTitle": "Recomendaciones de stocks",
     "analystTitle": "Análisis de acciones",
+    "searchPlaceholder": "Buscar acciones",
     "recommendations": {
         "other": "Otras recomendaciones"
     },

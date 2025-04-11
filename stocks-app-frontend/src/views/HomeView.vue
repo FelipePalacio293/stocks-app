@@ -4,11 +4,19 @@
   import Stock from '@/components/Stock.vue';
   import Spinner from '@/components/Spinner.vue';
   import ModalStockDetails from '@/components/ModalStockDetails.vue';
+  import StockSearch from '@/components/StockSearch.vue';
 
   const stocksStore = useStocksStore();
 
   onMounted(() => {
-    stocksStore.fetchStocks();
+    const urlParams = new URLSearchParams(window.location.search);
+    const tickerParam = urlParams.get('ticker');
+    
+    if (tickerParam) {
+      stocksStore.setSearchTerm(tickerParam);
+    } else {
+      stocksStore.fetchStocks();
+    }
   });
 </script>
 
@@ -16,6 +24,8 @@
   <div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $t('analystTitle') }}</h1>
+
+      <StockSearch />
 
       <div v-if="stocksStore.isLoading" class="mt-5">
         <Spinner />
